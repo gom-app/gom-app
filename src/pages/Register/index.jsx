@@ -1,24 +1,40 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, ArrowRight } from "lucide-react";
 import useAuth from "../../hooks/useAuth";
+import { isValidEmail, isValidPassword, doPasswordsMatch } from "../../utils/validators";
 
-export default function Login() {
+export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
-  const { login } = useAuth();
+
+  const { register } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
 
+    // Client-side validations
+    if (!isValidEmail(email)) {
+      setError("Format email tidak valid.");
+      return;
+    }
+    if (!isValidPassword(password)) {
+      setError("Password terlalu lemah, minimal 6 karakter.");
+      return;
+    }
+    if (!doPasswordsMatch(password, confirmPassword)) {
+      setError("Konfirmasi password tidak cocok.");
+      return;
+    }
+
+    setLoading(true);
     try {
-      const response = await login(email, password);
+      const response = await register(email, password);
       if (response.success) {
         navigate("/dashboard");
       } else {
@@ -56,7 +72,7 @@ export default function Login() {
           </svg>
         </div>
 
-        <h1 className="login-title">EggScale IoT</h1>
+        <h1 className="login-title">Daftar Akun</h1>
         <p className="login-subtitle">Sistem Monitoring Penimbangan Telur</p>
 
         {error && <div className="login-error-message">{error}</div>}
@@ -69,7 +85,7 @@ export default function Login() {
               <input
                 id="email"
                 type="email"
-                placeholder="Masukkan email"
+                placeholder="Masukkan email baru"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={loading}
@@ -85,7 +101,7 @@ export default function Login() {
               <input
                 id="password"
                 type="password"
-                placeholder="Masukkan password"
+                placeholder="Masukkan password baru"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={loading}
@@ -94,10 +110,30 @@ export default function Login() {
             </div>
           </div>
 
+          <div className="form-group">
+            <label className="form-label" htmlFor="confirm-password">Konfirmasi Password</label>
+            <div className="input-with-icon">
+              <Lock className="input-icon" size={18} />
+              <input
+                id="confirm-password"
+                type="password"
+                placeholder="Konfirmasi password baru"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                disabled={loading}
+                required
+              />
+            </div>
+          </div>
+
           <button type="submit" className="login-button" disabled={loading}>
-            {loading ? "Memproses..." : <>Login <ArrowRight size={18} /></>}
+            {loading ? "Memproses..." : <>Daftar <ArrowRight size={18} /></>}
           </button>
         </form>
+
+        <div className="auth-switch-link">
+          Sudah punya akun? <Link to="/login">Login</Link>
+        </div>
 
         <footer className="login-footer">
           © 2026 EggScale IoT System. All rights reserved.
