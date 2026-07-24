@@ -252,3 +252,226 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* ==========================================================================
+   Login Error Styles
+   ========================================================================== */
+.login-error-message {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #ef5350;
+  border-radius: 4px;
+  font-size: 13px;
+  text-align: left;
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ==========================================================================
+   Dashboard Layout Styles
+   ========================================================================== */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f8f9fa;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+  overflow-x: hidden;
+}
+
+.sidebar.open {
+  width: 240px;
+}
+
+.sidebar.collapsed {
+  width: 72px;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 12px;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  color: #5f6368;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.hamburger-btn:hover {
+  background-color: #f1f3f4;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.sidebar-egg-icon {
+  width: 24px;
+  height: 28px;
+}
+
+/* Sidebar Nav Links */
+.sidebar-nav {
+  flex-grow: 1;
+  padding: 16px 8px;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-link, .logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  color: #5f6368;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.nav-link:hover, .logout-btn:hover {
+  background-color: #f1f3f4;
+  color: var(--text-dark);
+}
+
+.nav-link.active {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.nav-link.active .nav-icon {
+  color: #2e7d32;
+}
+
+.nav-icon {
+  flex-shrink: 0;
+}
+
+.text-danger {
+  color: #d32f2f !important;
+}
+
+/* Sidebar Footer (Logout) */
+.sidebar-footer {
+  padding: 16px 8px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Main Layout Area */
+.main-layout-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Top Dashboard Header */
+.dashboard-header {
+  height: 64px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-toggle {
+  margin-left: -8px;
+}
+
+.welcome-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #5f6368;
+}
+
+.user-profile {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2e7d32;
+  background-color: #e8f5e9;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* Main Content Page Container */
+.dashboard-main-content {
+  padding: 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  flex-grow: 1;
+}
+
+.page-content h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.page-content p {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
